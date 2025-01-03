@@ -1,6 +1,8 @@
 import os
 
-restaurantes = ['Burger King', 'McDonalds', 'Subway', 'Habib\'s']
+restaurantes = [{'Nome':'Jojo Ramen', 'Categoria':'Japonesa', 'Status':False},
+                {'Nome':'Quintal do Braz', 'Categoria':'Italiana', 'Status':True},
+                {'Nome':'Halim', 'Categoria':'Arabe', 'Status':False}]
 
 def exibir_titulo():
     print('/\/\/\/\- SABOR EXPRESS -/\/\/\/\ \n')
@@ -14,19 +16,19 @@ def exibir_menu():
 def voltar_menu():
     input('\n------------ Pressione enter para voltar ao menu ------------')
 
-def opcao_invalida():
-    print('OPÇÃO INVALIDA!\n')
-    voltar_menu()
-
 def exibir_subtitulo(subtitulo):
     os.system('cls' if os.name == 'nt' else 'clear')
     print(subtitulo)
 
 def cadastrar_restaurante():
     exibir_subtitulo('---------------- Cadastro de novo restaurante ----------------\n')
-    restaurante = input("Nome do restaurante: ")
-    restaurantes.append(restaurante)
-    print(f'\nO restaurante {restaurante} foi cadastrado com sucesso!\n')
+    nome_restaurante = input("Digite o nome do restaurante: ")
+    categoria_restaurante = input(f"Digite a categoria do restaurante {nome_restaurante}: ")
+    status_restaurante = input(f"O restaurante {nome_restaurante} está ativo? Digite (S/N): ")
+
+
+    restaurantes.append(nome_restaurante)
+    print(f'\nO restaurante {nome_restaurante} foi cadastrado com sucesso!\n')
     voltar_menu()
 
 def listar_restaurantes():
@@ -35,7 +37,14 @@ def listar_restaurantes():
         print('Nenhum restaurante cadastrado!\n')
     else:
         for i, restaurante in enumerate(restaurantes, 1):
-            print(f"{i}. {restaurante}")
+            nome_restaurante = restaurante['Nome']
+            categoria_restaurante = restaurante['Categoria']
+            atividade_restaurante = 'Ativo' if restaurante['Ativo'] else 'Inativo'
+            print(f'{i}. {nome_restaurante} | {categoria_restaurante} | {atividade_restaurante}')
+    voltar_menu()
+
+def opcao_invalida():
+    print('OPÇÃO INVALIDA!\n')
     voltar_menu()
 
 def finalizar_aplicativo():
