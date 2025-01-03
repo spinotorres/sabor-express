@@ -1,5 +1,4 @@
 # App de listagem de restaurantes
----
 
 ## Intuito
 - Exercitar e rever conceitos básicos na linguagem *Pyhton*
