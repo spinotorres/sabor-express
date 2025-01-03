@@ -22,12 +22,11 @@ def exibir_subtitulo(subtitulo):
 
 def cadastrar_restaurante():
     exibir_subtitulo('---------------- Cadastro de novo restaurante ----------------\n')
+
     nome_restaurante = input("Digite o nome do restaurante: ")
     categoria_restaurante = input(f"Digite a categoria do restaurante {nome_restaurante}: ")
-    status_restaurante = input(f"O restaurante {nome_restaurante} está ativo? Digite (S/N): ")
-
-
-    restaurantes.append(nome_restaurante)
+    dados_do_restaurante = {'Nome': nome_restaurante, 'Categoria': categoria_restaurante, 'Status': False}
+    restaurantes.append(dados_do_restaurante)
     print(f'\nO restaurante {nome_restaurante} foi cadastrado com sucesso!\n')
     voltar_menu()
 
@@ -39,8 +38,8 @@ def listar_restaurantes():
         for i, restaurante in enumerate(restaurantes, 1):
             nome_restaurante = restaurante['Nome']
             categoria_restaurante = restaurante['Categoria']
-            atividade_restaurante = 'Ativo' if restaurante['Ativo'] else 'Inativo'
-            print(f'{i}. {nome_restaurante} | {categoria_restaurante} | {atividade_restaurante}')
+            status_restaurante = 'Ativo' if restaurante['Status'] else 'Inativo'
+            print(f'{i}. {nome_restaurante} | {categoria_restaurante} | {status_restaurante}')
     voltar_menu()
 
 def opcao_invalida():
