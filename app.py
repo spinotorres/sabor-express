@@ -10,7 +10,7 @@ def exibir_titulo():
 def exibir_menu():
     print(  '1. Cadastrar restaurante\n' + 
             '2. Listar restaurantes\n' + 
-            '3. Ativar restaurante\n' +
+            '3. Ativar restaurante ou Desativar restaurante\n' +
             '4. Sair\n')
 
 def voltar_menu():
@@ -42,6 +42,22 @@ def listar_restaurantes():
             print(f'{i}. {nome_restaurante} | {categoria_restaurante} | {status_restaurante}')
     voltar_menu()
 
+def alterar_status_restaurante():
+    exibir_subtitulo('------------------ Alterar status do restaurante ------------------\n')
+    listar_restaurantes()
+    restaurante_escolhido = int(input('Digite o número do restaurante que deseja alterar o status: '))
+    if restaurante_escolhido > len(restaurantes) or restaurante_escolhido <= 0:
+        print('Restaurante não encontrado!\n')
+    else:
+        restaurante = restaurantes[restaurante_escolhido - 1]
+        nome_restaurante = restaurante['Nome']
+        status_restaurante = 'Ativo' if restaurante['Status'] else 'Inativo'
+        print(f'\nRestaurante {nome_restaurante} está {status_restaurante}')
+        novo_status = 'Ativo' if not restaurante['Status'] else 'Inativo'
+        restaurante['Status'] = not restaurante['Status']
+        print(f'\nStatus do restaurante {nome_restaurante} alterado para {novo_status}\n')
+    voltar_menu()
+
 def opcao_invalida():
     print('OPÇÃO INVALIDA!\n')
     voltar_menu()
@@ -63,7 +79,7 @@ def escolher_opcao():
                 case 2:
                     listar_restaurantes()
                 case 3:
-                    print('Ativar restaurante')
+                    alterar_status_restaurante()
                 case 4:
                     finalizar_aplicativo()
                     break
