@@ -18,10 +18,14 @@ def voltar_menu():
 
 def exibir_subtitulo(subtitulo):
     os.system('cls' if os.name == 'nt' else 'clear')
+    linha = '*' * (len(subtitulo))
+    print(linha)
     print(subtitulo)
+    print(linha)
+    print()
 
 def cadastrar_restaurante():
-    exibir_subtitulo('---------------- Cadastro de novo restaurante ----------------\n')
+    exibir_subtitulo('Cadastro de novo restaurante\n')
 
     nome_restaurante = input("Digite o nome do restaurante: ")
     categoria_restaurante = input(f"Digite a categoria do restaurante {nome_restaurante}: ")
@@ -31,19 +35,20 @@ def cadastrar_restaurante():
     voltar_menu()
 
 def listar_restaurantes():
-    exibir_subtitulo('-------------------- Lista de restaurantes --------------------\n')
+    exibir_subtitulo('Lista de restaurantes\n')
     if len(restaurantes) <= 0:
         print('Nenhum restaurante cadastrado!\n')
     else:
+        print(f'| {'NOME'.ljust(18)} | {'CATEGORIA'.ljust(15)} | {'STATUS'.ljust(15)} |')
         for i, restaurante in enumerate(restaurantes, 1):
             nome_restaurante = restaurante['Nome']
             categoria_restaurante = restaurante['Categoria']
             status_restaurante = 'Ativo' if restaurante['Status'] else 'Inativo'
-            print(f'{i}. {nome_restaurante} | {categoria_restaurante} | {status_restaurante}')
+            print(f'| {i}. {nome_restaurante.ljust(15)} | {categoria_restaurante.ljust(15)} | {status_restaurante.ljust(15)} |')
     voltar_menu()
 
 def alterar_status_restaurante():
-    exibir_subtitulo('------------------ Alterar status do restaurante ------------------\n')
+    exibir_subtitulo('Alterar status do restaurante\n')
     listar_restaurantes()
     restaurante_escolhido = int(input('Digite o número do restaurante que deseja alterar o status: '))
     if restaurante_escolhido > len(restaurantes) or restaurante_escolhido <= 0:
@@ -63,7 +68,7 @@ def opcao_invalida():
     voltar_menu()
 
 def finalizar_aplicativo():
-    exibir_subtitulo('------------------- Aplicativo finalizado -------------------\n')
+    exibir_subtitulo('Aplicativo finalizado\n')
 
 def escolher_opcao():
     while True:
